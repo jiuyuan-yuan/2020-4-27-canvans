@@ -1,0 +1,23 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+body{margin: 0;}
+
+#painting{
+	background:gray;
+}
+#actions{
+	position: fixed;
+	bottom: 5px;
+	left: 5px;
+}
+#brush{
+	display: none;
+}
+.actions.x > #brush{
+	display: block;
+}
+.actions.x > #eraser{
+	display: none;
+}
