@@ -2,22 +2,74 @@
 	padding: 0;
 	margin: 0;
 }
-body{margin: 0;}
+ol,li{
+	list-style: none;
+}
+body{
+	overflow: hidden;
+}
+.icon {
+   width: 1.5em; height: 1.5em;
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
+   margin: 5px;
+}
 
 #painting{
-	background:gray;
+	background:#fff;
 }
 #actions{
 	position: fixed;
-	bottom: 5px;
-	left: 5px;
+	top: 5px;
+	left: 12px;
 }
-#brush{
-	display: none;
+.actions > svg.active{
+	transition: all 0.3s;
+	color: red;
+	transform: scale(1.5);
 }
-.actions.x > #brush{
-	display: block;
+.colors  {
+	position: fixed;
+	top:50px;
+	left: 10px;
 }
-.actions.x > #eraser{
-	display: none;
+.colors > li{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	margin: 10px;
+	background: red;
+}
+.colors > .blue{
+	background: blue;
+}
+.colors > .green{
+	background: green;
+}
+.colors > .black{
+	background: black;
+}
+
+.colors > .active{
+	transition: all 0.3s;
+	transform: scale(1.2);
+	box-shadow: 0 0 5px #623e3e;
+}
+.penWidth{
+	position: fixed;
+	right: 40px;
+	top:5px;
+}
+.penWidth > li{
+	cursor: pointer;
+	font-size: 20px;
+	display: inline-block;
+	margin:5px;
+}
+.penWidth > .width{
+	height: 3px;
+	background:black;
+	width:45px;
+	border-radius: 20%;
 }

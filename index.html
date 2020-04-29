@@ -9,138 +9,41 @@
 </head>
 <body>
 		
-			<canvas id="painting"></canvas>
-			<div class="actions" id="actions">
-		    <button id="eraser">橡皮擦</button>
-			<button id="brush">画笔</button>
-			</div>
+		<canvas id="painting"></canvas>
+		<div class="actions" id="actions">
+
+		<svg id="pen" class="icon active" aria-hidden="true">
+		<use xlink:href="#iconPen"></use>
+		</svg>
+
+		<svg id="eraser" class="icon" aria-hidden="true">
+		<use xlink:href="#iconeraser"></use>
+		</svg>
+
+		<svg id="download" class="icon" aria-hidden="true">
+		<use xlink:href="#icondownload"></use>
+		</svg>
+
+		<svg id="delate" class="icon" aria-hidden="true">
+		<use xlink:href="#icondel_"></use>
+		</svg>
+		</div>
+		<ol class="colors">
+			<li class="red" id="red"></li>
+			<li class="blue" id="blue"></li>
+			<li class="green" id="green"></li>
+			<li class="black active" id="black"></li>
+		</ol>
+		<ol class="penWidth">
+			<li id="plus">+</li>
+			<li class="width" id="width"></li>	
+			<li id="small">-</li>
+		</ol>
+
 		
 
 
-<script>
-	
-	var canvas = document.getElementById('painting'); 
-	var context = canvas.getContext('2d');
-
-	autoSetCanvasSize();
-
-	listenToMouse();
-
-	/*****监听******/
-	function listenToMouse(){
-		var lastPoint = {x:undefined,y:undefined};
-		var eraserEnabled = false;   //是否使用橡皮擦
-	    var using = false;		// 是否按下
-
-	    if(document.body.ontouchstart !== undefined){  //触屏检测
-
-	   	   /*****触屏*****/
-	    	canvas.ontouchstart = function(aaa){
-	    		var x = aaa.touches[0].clientX;
-	    		var y = aaa.touches[0].clientY;
-	    		using = true;
-				lastPoint = {'x':x,'y':y};	
-	    	}
-	    	canvas.ontouchmove = function(aaa){
-	    		var x = aaa.touches[0].clientX;
-	    		var y = aaa.touches[0].clientY;
-
-	    		if(!using){return}
-
-				if(eraserEnabled){
-					context.clearRect(x-5,y-5,10,10);
-					}
-				else {
-					var newPoint = {'x':x,'y':y};
-					drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y);
-					lastPoint = newPoint;
-					}	
-	    	}
-	    	canvas.ontouchend = function(){
-	    		using = false;
-	    	}
-	    	eraser.onclick = function(){
-				actions.className = 'actions x';
-				eraserEnabled = true;
-			}
-			brush.onclick = function(){
-				actions.className = 'actions';
-		   		eraserEnabled = false;
-			}
-
-	    }
-
-	    else{
-	    	/*****非触屏*****/
-			canvas.onmousedown = function(a){
-			using = true;
-			var x = a.clientX;
-			var y = a.clientY;
-			lastPoint = {'x':x,'y':y}
-			}
-			canvas.onmousemove = function(a){
-			var x = a.clientX;
-			var y = a.clientY;
-
-			if(!using){return}
-    			
-			if(eraserEnabled){
-				context.clearRect(x-5,y-5,10,10);
-				}
-			else {
-				var newPoint = {'x':x,'y':y};
-				drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y);
-				lastPoint = newPoint;
-				}	
-			}
-			canvas.onmouseup = function(a){
-				using = false;
-			}
-			
-			eraser.onclick = function(){
-				actions.className = 'actions x';
-				eraserEnabled = true;
-			}
-			brush.onclick = function(){
-				actions.className = 'actions';
-		   		eraserEnabled = false;
-			}
-
-	    }
-
-
-
-
-	}
-	/*****调整canvas大小******/
-	function autoSetCanvasSize(){
-		setCanvasSize();        //全屏canvas
-		window.onresize = function(){
-		setCanvasSize();
-		}
-		function setCanvasSize(){
-				var pageHeight = document.documentElement.clientHeight;
-				var pageWidth = document.documentElement.clientWidth;
-				canvas.height = pageHeight;
-				canvas.width = pageWidth;
-		}
-	}
-	
-	function drawLine(x1,y1,x2,y2) {
-		context.beginPath();
-		context.moveTo(x1,y1);
-		context.lineWidth = 2;
-		context.lineTo(x2,y2);
-		context.stroke();
-		context.closePath();
-	}
-	function drawCircle(x,y,radius) {
-		context.beginPath();
-		context.arc(x,y,radius,0,2*Math.PI);
-		context.stroke();
-	}
-	
-
-</script>
+<script type="text/javascript" src="./js/index.js"></script>
+<script src="//at.alicdn.com/t/font_1785638_rplzyptfsk.js"></script>
 </body>
 </html>
