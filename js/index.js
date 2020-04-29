@@ -101,10 +101,6 @@ function listenToMouse(){
 			width.style.height =1 + penChange + 'px';
 		}
 
-
-
-
-
     }
 
     else{
@@ -226,4 +222,7 @@ function drawCircle(x,y,radius) {
 	context.arc(x,y,radius,0,2*Math.PI);
 	context.stroke();
 }
-
+function preventDefault(e) {
+    e.preventDefault();
+}
+document.addEventListener('touchmove', preventDefault, {passive: false});
